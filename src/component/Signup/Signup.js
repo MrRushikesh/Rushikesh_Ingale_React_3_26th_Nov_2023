@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import {useNavigate} from 'react-router-dom'
 import './Signup.css';
 
-const url = 'http://localhost:5000/users';
+// const url = 'http://localhost:5000/users';
 
 
 
@@ -20,22 +20,43 @@ export default function Signup (){
     // console.log(phone);
     // console.log(password)
 
+    const generateCoupon = () => {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let coupon = '';
+        for (let i = 0; i < 12; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            coupon += characters.charAt(randomIndex);
+         }
+    return coupon;
+       
+    }
+
     const handelCheckout = () => {
-        fetch(url,{
-            method:'POST',
-            headers:{
-                'accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                name : username,
-                email : email,
-                phone : phone,
-                password : password
-            })
+        // fetch(url,{
+        //     method:'POST',
+        //     headers:{
+        //         'accept':'application/json',
+        //         'Content-Type':'application/json'
+        //     },
+        //     body:JSON.stringify({
+        //         name : username,
+        //         email : email,
+        //         phone : phone,
+        //         password : password
+        //     })
             
-        })
-        .then(navigate(`/login`))
+        // })
+        // .then(generateCoupon())
+        // .then(navigate(`/login`))
+
+
+        const generateToken = generateCoupon()
+        sessionStorage.setItem('token',generateToken);
+        sessionStorage.setItem('email',email)
+        sessionStorage.setItem('username',username)
+        sessionStorage.setItem('phone',phone)
+        navigate('/login')
+
     }
 
     return(

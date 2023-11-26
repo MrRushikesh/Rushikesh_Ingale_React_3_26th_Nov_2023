@@ -67,7 +67,7 @@
 .login-container > div > button{
     display: block;
     /* border: 2px solid green; */
-
+    cursor:pointer;
     height: 40px;
     width:80%;
     margin-left:10%;

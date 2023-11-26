@@ -1,9 +1,31 @@
 import './Sidenavbar.css';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import React from 'react';
 
 
+
 export default function  Sidenavbar(){
+
+
+    const navigate = useNavigate()
+    const token = sessionStorage.getItem('token')
+
+
+
+    const handleProfile = () => {
+        if(token !== null){
+            navigate('/profile')
+        }else{
+            alert("Sign Up First")
+            navigate('/signup')
+        }
+    
+    }
+
+    
+    const handleLogout = () => {
+        sessionStorage.clear()
+    }
 
 
     return(
@@ -14,7 +36,7 @@ export default function  Sidenavbar(){
 
             <div className="sidenav-url">
                 <div className="url">
-                    <Link to={`/profile`} className="active">Profile</Link>
+                    <button to={`#`} onClick={handleProfile} className="active">Profile</button>
                     <hr/>
                 </div>
                 <div className="url">
@@ -26,7 +48,7 @@ export default function  Sidenavbar(){
                     <hr />
                 </div>
                 <div className="url">
-                    <Link to={`/login`}>Log Out</Link>
+                    <Link to={`/login`} onClick={handleLogout}>Log Out</Link>
                     <hr />
                 </div>
             </div>

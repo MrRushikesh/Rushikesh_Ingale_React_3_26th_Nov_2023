@@ -4,9 +4,18 @@ import './Profile.css';
 
 export default function Profile (){
 
-    const [username] = useState('rushi');
-    const [email] = useState('rushi@gmail.com');
-    const [phone] = useState('7447640893')
+
+    const userName = sessionStorage.getItem('username');
+    const userEmail = sessionStorage.getItem('email');
+    const userPhone = sessionStorage.getItem('phone')
+
+
+
+    const [username] = useState(userName);
+    const [email] = useState(userEmail);
+    const [phone] = useState(userPhone)
+
+  
 
     return(
         <>
